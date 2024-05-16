@@ -1,0 +1,31 @@
+Quartus Prime Archive log --	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/contador.qarlog
+
+Archive:	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/contador.qar
+Date:		Sun Apr 14 19:56:32 2024
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/CPU.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/ULASomaSub.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/Waveform.vwf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/assignment_defaults.qdf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/buffer_3_state_8portas.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/contador.qpf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/contador.qsf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/conversorHex7Seg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/decoder3x8.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/decoderInstru.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/edgeDetector.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/flipflopGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/logicaDesvio.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/memoriaRAM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/memoriaROM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/muxGenerico2x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/muxGenerico4x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/registradorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/somaConstante.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/CONTADOR/contador_restored/top_level.vhd
+	======= Total: 20 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

@@ -1,0 +1,440 @@
+$comment
+	File created using the following command:
+		vcd file AULA8.msim.vcd -direction
+$end
+$date
+	Tue Mar 26 22:19:05 2024
+$end
+$version
+	ModelSim Version 2020.1
+$end
+$timescale
+	1ps
+$end
+
+$scope module aula8_vhd_vec_tst $end
+$var wire 1 ! CLOCK_50 $end
+$var wire 1 " FPGA_RESET $end
+$var wire 1 # HEX0 [6] $end
+$var wire 1 $ HEX0 [5] $end
+$var wire 1 % HEX0 [4] $end
+$var wire 1 & HEX0 [3] $end
+$var wire 1 ' HEX0 [2] $end
+$var wire 1 ( HEX0 [1] $end
+$var wire 1 ) HEX0 [0] $end
+$var wire 1 * HEX1 [6] $end
+$var wire 1 + HEX1 [5] $end
+$var wire 1 , HEX1 [4] $end
+$var wire 1 - HEX1 [3] $end
+$var wire 1 . HEX1 [2] $end
+$var wire 1 / HEX1 [1] $end
+$var wire 1 0 HEX1 [0] $end
+$var wire 1 1 HEX2 [6] $end
+$var wire 1 2 HEX2 [5] $end
+$var wire 1 3 HEX2 [4] $end
+$var wire 1 4 HEX2 [3] $end
+$var wire 1 5 HEX2 [2] $end
+$var wire 1 6 HEX2 [1] $end
+$var wire 1 7 HEX2 [0] $end
+$var wire 1 8 HEX3 [6] $end
+$var wire 1 9 HEX3 [5] $end
+$var wire 1 : HEX3 [4] $end
+$var wire 1 ; HEX3 [3] $end
+$var wire 1 < HEX3 [2] $end
+$var wire 1 = HEX3 [1] $end
+$var wire 1 > HEX3 [0] $end
+$var wire 1 ? HEX4 [6] $end
+$var wire 1 @ HEX4 [5] $end
+$var wire 1 A HEX4 [4] $end
+$var wire 1 B HEX4 [3] $end
+$var wire 1 C HEX4 [2] $end
+$var wire 1 D HEX4 [1] $end
+$var wire 1 E HEX4 [0] $end
+$var wire 1 F HEX5 [6] $end
+$var wire 1 G HEX5 [5] $end
+$var wire 1 H HEX5 [4] $end
+$var wire 1 I HEX5 [3] $end
+$var wire 1 J HEX5 [2] $end
+$var wire 1 K HEX5 [1] $end
+$var wire 1 L HEX5 [0] $end
+$var wire 1 M KEY [3] $end
+$var wire 1 N KEY [2] $end
+$var wire 1 O KEY [1] $end
+$var wire 1 P KEY [0] $end
+$var wire 1 Q LEDR [9] $end
+$var wire 1 R LEDR [8] $end
+$var wire 1 S LEDR [7] $end
+$var wire 1 T LEDR [6] $end
+$var wire 1 U LEDR [5] $end
+$var wire 1 V LEDR [4] $end
+$var wire 1 W LEDR [3] $end
+$var wire 1 X LEDR [2] $end
+$var wire 1 Y LEDR [1] $end
+$var wire 1 Z LEDR [0] $end
+$var wire 1 [ PC_OUT [8] $end
+$var wire 1 \ PC_OUT [7] $end
+$var wire 1 ] PC_OUT [6] $end
+$var wire 1 ^ PC_OUT [5] $end
+$var wire 1 _ PC_OUT [4] $end
+$var wire 1 ` PC_OUT [3] $end
+$var wire 1 a PC_OUT [2] $end
+$var wire 1 b PC_OUT [1] $end
+$var wire 1 c PC_OUT [0] $end
+$var wire 1 d SW [9] $end
+$var wire 1 e SW [8] $end
+$var wire 1 f SW [7] $end
+$var wire 1 g SW [6] $end
+$var wire 1 h SW [5] $end
+$var wire 1 i SW [4] $end
+$var wire 1 j SW [3] $end
+$var wire 1 k SW [2] $end
+$var wire 1 l SW [1] $end
+$var wire 1 m SW [0] $end
+
+$scope module i1 $end
+$var wire 1 n gnd $end
+$var wire 1 o vcc $end
+$var wire 1 p unknown $end
+$var wire 1 q devoe $end
+$var wire 1 r devclrn $end
+$var wire 1 s devpor $end
+$var wire 1 t ww_devoe $end
+$var wire 1 u ww_devclrn $end
+$var wire 1 v ww_devpor $end
+$var wire 1 w ww_CLOCK_50 $end
+$var wire 1 x ww_KEY [3] $end
+$var wire 1 y ww_KEY [2] $end
+$var wire 1 z ww_KEY [1] $end
+$var wire 1 { ww_KEY [0] $end
+$var wire 1 | ww_SW [9] $end
+$var wire 1 } ww_SW [8] $end
+$var wire 1 ~ ww_SW [7] $end
+$var wire 1 !! ww_SW [6] $end
+$var wire 1 "! ww_SW [5] $end
+$var wire 1 #! ww_SW [4] $end
+$var wire 1 $! ww_SW [3] $end
+$var wire 1 %! ww_SW [2] $end
+$var wire 1 &! ww_SW [1] $end
+$var wire 1 '! ww_SW [0] $end
+$var wire 1 (! ww_FPGA_RESET $end
+$var wire 1 )! ww_PC_OUT [8] $end
+$var wire 1 *! ww_PC_OUT [7] $end
+$var wire 1 +! ww_PC_OUT [6] $end
+$var wire 1 ,! ww_PC_OUT [5] $end
+$var wire 1 -! ww_PC_OUT [4] $end
+$var wire 1 .! ww_PC_OUT [3] $end
+$var wire 1 /! ww_PC_OUT [2] $end
+$var wire 1 0! ww_PC_OUT [1] $end
+$var wire 1 1! ww_PC_OUT [0] $end
+$var wire 1 2! ww_LEDR [9] $end
+$var wire 1 3! ww_LEDR [8] $end
+$var wire 1 4! ww_LEDR [7] $end
+$var wire 1 5! ww_LEDR [6] $end
+$var wire 1 6! ww_LEDR [5] $end
+$var wire 1 7! ww_LEDR [4] $end
+$var wire 1 8! ww_LEDR [3] $end
+$var wire 1 9! ww_LEDR [2] $end
+$var wire 1 :! ww_LEDR [1] $end
+$var wire 1 ;! ww_LEDR [0] $end
+$var wire 1 <! ww_HEX0 [6] $end
+$var wire 1 =! ww_HEX0 [5] $end
+$var wire 1 >! ww_HEX0 [4] $end
+$var wire 1 ?! ww_HEX0 [3] $end
+$var wire 1 @! ww_HEX0 [2] $end
+$var wire 1 A! ww_HEX0 [1] $end
+$var wire 1 B! ww_HEX0 [0] $end
+$var wire 1 C! ww_HEX1 [6] $end
+$var wire 1 D! ww_HEX1 [5] $end
+$var wire 1 E! ww_HEX1 [4] $end
+$var wire 1 F! ww_HEX1 [3] $end
+$var wire 1 G! ww_HEX1 [2] $end
+$var wire 1 H! ww_HEX1 [1] $end
+$var wire 1 I! ww_HEX1 [0] $end
+$var wire 1 J! ww_HEX2 [6] $end
+$var wire 1 K! ww_HEX2 [5] $end
+$var wire 1 L! ww_HEX2 [4] $end
+$var wire 1 M! ww_HEX2 [3] $end
+$var wire 1 N! ww_HEX2 [2] $end
+$var wire 1 O! ww_HEX2 [1] $end
+$var wire 1 P! ww_HEX2 [0] $end
+$var wire 1 Q! ww_HEX3 [6] $end
+$var wire 1 R! ww_HEX3 [5] $end
+$var wire 1 S! ww_HEX3 [4] $end
+$var wire 1 T! ww_HEX3 [3] $end
+$var wire 1 U! ww_HEX3 [2] $end
+$var wire 1 V! ww_HEX3 [1] $end
+$var wire 1 W! ww_HEX3 [0] $end
+$var wire 1 X! ww_HEX4 [6] $end
+$var wire 1 Y! ww_HEX4 [5] $end
+$var wire 1 Z! ww_HEX4 [4] $end
+$var wire 1 [! ww_HEX4 [3] $end
+$var wire 1 \! ww_HEX4 [2] $end
+$var wire 1 ]! ww_HEX4 [1] $end
+$var wire 1 ^! ww_HEX4 [0] $end
+$var wire 1 _! ww_HEX5 [6] $end
+$var wire 1 `! ww_HEX5 [5] $end
+$var wire 1 a! ww_HEX5 [4] $end
+$var wire 1 b! ww_HEX5 [3] $end
+$var wire 1 c! ww_HEX5 [2] $end
+$var wire 1 d! ww_HEX5 [1] $end
+$var wire 1 e! ww_HEX5 [0] $end
+$var wire 1 f! \CLOCK_50~input_o\ $end
+$var wire 1 g! \SW[0]~input_o\ $end
+$var wire 1 h! \SW[8]~input_o\ $end
+$var wire 1 i! \SW[9]~input_o\ $end
+$var wire 1 j! \KEY[2]~input_o\ $end
+$var wire 1 k! \KEY[3]~input_o\ $end
+$var wire 1 l! \FPGA_RESET~input_o\ $end
+$var wire 1 m! \SW[1]~input_o\ $end
+$var wire 1 n! \SW[2]~input_o\ $end
+$var wire 1 o! \SW[3]~input_o\ $end
+$var wire 1 p! \SW[4]~input_o\ $end
+$var wire 1 q! \SW[5]~input_o\ $end
+$var wire 1 r! \SW[6]~input_o\ $end
+$var wire 1 s! \SW[7]~input_o\ $end
+$var wire 1 t! \KEY[0]~input_o\ $end
+$var wire 1 u! \KEY[1]~input_o\ $end
+$var wire 1 v! \~QUARTUS_CREATED_GND~I_combout\ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1!
+1"
+0n
+1o
+xp
+1q
+1r
+1s
+1t
+1u
+1v
+1w
+1(!
+1f!
+1g!
+1h!
+1i!
+1j!
+1k!
+1l!
+1m!
+1n!
+1o!
+1p!
+1q!
+1r!
+1s!
+1t!
+1u!
+xv!
+1M
+1N
+1O
+1P
+1d
+1e
+1f
+1g
+1h
+1i
+1j
+1k
+1l
+1m
+1x
+1y
+1z
+1{
+1|
+1}
+1~
+1!!
+1"!
+1#!
+1$!
+1%!
+1&!
+1'!
+0)!
+0*!
+0+!
+0,!
+0-!
+0.!
+0/!
+00!
+01!
+02!
+03!
+04!
+05!
+06!
+07!
+08!
+09!
+0:!
+0;!
+1<!
+0=!
+0>!
+0?!
+0@!
+0A!
+0B!
+1C!
+0D!
+0E!
+0F!
+0G!
+0H!
+0I!
+1J!
+0K!
+0L!
+0M!
+0N!
+0O!
+0P!
+1Q!
+0R!
+0S!
+0T!
+0U!
+0V!
+0W!
+1X!
+0Y!
+0Z!
+0[!
+0\!
+0]!
+0^!
+1_!
+0`!
+0a!
+0b!
+0c!
+0d!
+0e!
+1#
+0$
+0%
+0&
+0'
+0(
+0)
+1*
+0+
+0,
+0-
+0.
+0/
+00
+11
+02
+03
+04
+05
+06
+07
+18
+09
+0:
+0;
+0<
+0=
+0>
+1?
+0@
+0A
+0B
+0C
+0D
+0E
+1F
+0G
+0H
+0I
+0J
+0K
+0L
+0Q
+0R
+0S
+0T
+0U
+0V
+0W
+0X
+0Y
+0Z
+0[
+0\
+0]
+0^
+0_
+0`
+0a
+0b
+0c
+$end
+#20000
+0!
+0w
+0f!
+#40000
+1!
+1w
+1f!
+#60000
+0!
+0w
+0f!
+#80000
+1!
+1w
+1f!
+#100000
+0!
+0w
+0f!
+#120000
+1!
+1w
+1f!
+#140000
+0!
+0w
+0f!
+#160000
+1!
+1w
+1f!
+#180000
+0!
+0w
+0f!
+#200000
+1!
+1w
+1f!
+#220000
+0!
+0w
+0f!
+#240000
+1!
+1w
+1f!
+#260000
+0!
+0w
+0f!
+#280000
+1!
+1w
+1f!
+#300000

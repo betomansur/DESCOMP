@@ -1,0 +1,182 @@
+STA @510                    	#Limpa leitura KEY1
+LDA @0                      	#Carrega o valor do endereço 0 da RAM no acumulador (Limite das unidades)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+LDA @1                      	#Carrega o valor do endereço 1 da RAM no acumulador (Limite das dezenas)
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+LDA @2                      	#Carrega o valor do endereço 2 da RAM no acumulador (Limite das centenas)
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+LDA @3                      	#Carrega o valor do endereço 3 da RAM no acumulador (Limite dos milhares)
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+LDA @4                      	#Carrega o valor do endereço 4 da RAM no acumulador (Limite das dezenas de milhares)
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+LDA @5                      	#Carrega o valor do endereço 5 da RAM no acumulador (Limite das centenas de milhares)
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 10, vai para o label maxUni (Limite maximo das unidades)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 11, vai para o label maxUni (Limite maximo das unidades)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 12, vai para o label maxUni (Limite maximo das unidades)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 13, vai para o label maxUni (Limite maximo das unidades)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 14, vai para o label maxUni (Limite maximo das unidades)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @85           	            #Se o valor das chaves SW0 a SW7 for 15, vai para o label maxUni (Limite maximo das unidades)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+STA @0                      	#Salva o valor do acumulador no endereço 0 da RAM (Limite das unidades)
+JMP @89           	            #Vai para o label UNIOK (Unidades menor que o limite)
+NOP
+LDA @19                     	#Carrega o endereco 19 da RAM no acumulador (9)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+STA @0                      	#Salva 9 no endereço 0 da RAM (Limite das unidades)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @68           	            #Se o valor do KEY1 for 0 (nao setou o limite das unidades), vai para o label LimUni (Limite das unidades)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 10, vai para o label maxDez (Limite maximo das dezenas)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 11, vai para o label maxDez (Limite maximo das dezenas)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 12, vai para o label maxDez (Limite maximo das dezenas)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 13, vai para o label maxDez (Limite maximo das dezenas)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 14, vai para o label maxDez (Limite maximo das dezenas)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @111           	            #Se o valor das chaves SW0 a SW7 for 15, vai para o label maxDez (Limite maximo das dezenas)
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+STA @1                      	#Salva o valor do acumulador no endereço 1 da RAM (Limite das dezenas)
+JMP @115           	            #Vai para o label DEZOK (Dezenas menor que o limite)
+NOP
+LDA @19                     	#Carrega 19 no acumulador
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+STA @1                      	#Salva 9 no endereço 1 da RAM (Limite das dezenas)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @94           	#Se o valor do KEY1 for 0 (nao setou o limite das dezenas), vai para o label LimDez (Limite das dezenas)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 10, vai para o label maxCen (Limite maximo das centenas)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 11, vai para o label maxCen (Limite maximo das centenas)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 12, vai para o label maxCen (Limite maximo das centenas)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 13, vai para o label maxCen (Limite maximo das centenas)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 14, vai para o label maxCen (Limite maximo das centenas)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @137           	#Se o valor das chaves SW0 a SW7 for 15, vai para o label maxCen (Limite maximo das centenas)
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+STA @2                      	#Salva o valor do acumulador no endereço 2 da RAM (Limite das centenas)
+JMP @141           	#Vai para o label CENOK (Centenas menor que o limite)
+NOP
+LDA @19                     	#Carrega 19 no acumulador
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+STA @2                      	#Salva 9 no endereço 2 da RAM (Limite das centenas)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @120           	#Se o valor do KEY1 for 0 (nao setou o limite das centenas), vai para o label LimCen (Limite das centenas)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 10, vai para o label maxMil (Limite maximo dos milhares)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 11, vai para o label maxMil (Limite maximo dos milhares)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 12, vai para o label maxMil (Limite maximo dos milhares)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 13, vai para o label maxMil (Limite maximo dos milhares)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 14, vai para o label maxMil (Limite maximo dos milhares)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @163           	#Se o valor das chaves SW0 a SW7 for 15, vai para o label maxMil (Limite maximo dos milhares)
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+STA @3                      	#Salva o valor do acumulador no endereço 3 da RAM (Limite dos milhares)
+JMP @167           	#Vai para o label MILOK (Milhares menor que o limite)
+NOP
+LDA @19                     	#Carrega 19 no acumulador
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+STA @3                      	#Salva 9 no endereço 3 da RAM (Limite dos milhares)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @146           	#Se o valor do KEY1 for 0 (nao setou o limite dos milhares), vai para o label LimMil (Limite dos milhares)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 10, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 11, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 12, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 13, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 14, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @189           	#Se o valor das chaves SW0 a SW7 for 15, vai para o label maxDezM (Limite maximo das dezenas de milhares)
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+STA @4                      	#Salva o valor do acumulador no endereço 4 da RAM (Limite das dezenas de milhares)
+JMP @193           	#Vai para o label DEZMOK (Dezenas de milhares menor que o limite)
+NOP
+LDA @19                     	#Carrega 19 no acumulador
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+STA @4                      	#Salva 9 no endereço 4 da RAM (Limite das dezenas de milhares)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @172           	#Se o valor do KEY1 for 0 (nao setou o limite das dezenas de milhares), vai para o label LimDezM (Limite das dezenas de milhares)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+CEQ @20                     	#Compara o valor das chaves SW0 a SW7 com 20 (10)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 10, vai para o label maxCenM (Limite maximo das centenas de milhares)
+CEQ @21                     	#Compara o valor das chaves SW0 a SW7 com 21 (11)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 11, vai para o label maxCenM (Limite maximo das centenas de milhares)
+CEQ @22                     	#Compara o valor das chaves SW0 a SW7 com 22 (12)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 12, vai para o label maxCenM (Limite maximo das centenas de milhares)
+CEQ @23                     	#Compara o valor das chaves SW0 a SW7 com 23 (13)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 13, vai para o label maxCenM (Limite maximo das centenas de milhares)
+CEQ @24                     	#Compara o valor das chaves SW0 a SW7 com 24 (14)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 14, vai para o label maxCenM (Limite maximo das centenas de milhares)
+CEQ @25                     	#Compara o valor das chaves SW0 a SW7 com 25 (15)
+JEQ @215           	#Se o valor das chaves SW0 a SW7 for 15, vai para o label maxCenM (Limite maximo das centenas de milhares)
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+STA @5                      	#Salva o valor do acumulador no endereço 5 da RAM (Limite das centenas de milhares)
+JMP @219           	#Vai para o label CENMOK (Centenas de milhares menor que o limite)
+NOP
+LDA @19                     	#Carrega 19 no acumulador
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+STA @5                      	#Salva 9 no endereço 5 da RAM (Limite das centenas de milhares)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @198           	#Se o valor do KEY1 for 0 (nao setou o limite das centenas de milhares), vai para o label LimCenM (Limite das centenas de milhares)
+STA @510                    	#Limpa leitura KEY1
+LDA @10                     	#Carrega o valor do endereço 10 da RAM no acumulador (valor atual das unidades)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+LDA @11                     	#Carrega o valor do endereço 11 da RAM no acumulador (valor atual das dezenas)
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+LDA @12                     	#Carrega o valor do endereço 12 da RAM no acumulador (valor atual das centenas)
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+LDA @13                     	#Carrega o valor do endereço 13 da RAM no acumulador (valor atual dos milhares)
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+LDA @14                     	#Carrega o valor do endereço 14 da RAM no acumulador (valor atual das dezenas de milhares)
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+LDA @15                     	#Carrega o valor do endereço 15 da RAM no acumulador (valor atual das centenas de milhares)
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+RET

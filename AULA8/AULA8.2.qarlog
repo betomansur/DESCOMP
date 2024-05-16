@@ -1,0 +1,32 @@
+Quartus Prime Archive log --	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/AULA8.2.qarlog
+
+Archive:	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/AULA8.2.qar
+Date:		Tue Mar 26 22:19:48 2024
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/AULA8.qpf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/AULA8.qsf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/CPU.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/ULASomaSub.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/Waveform.vwf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/aula8.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/buffer_3_state_8portas.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/conversorHex7Seg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/decoder3x8.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/decoderInstru.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/edgeDetector.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/flipflopGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/logicaDesvio.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/memoriaRAM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/memoriaROM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/muxGenerico2x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/muxGenerico4x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/processador.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/registradorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA8/somaConstante.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 21 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

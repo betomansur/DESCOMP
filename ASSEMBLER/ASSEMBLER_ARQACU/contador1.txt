@@ -1,0 +1,316 @@
+NOP
+LDI $1                      	
+STA @1                     
+LDI $9                      	
+STA @9                      
+LDI $10                     	
+STA @10                     
+LDI $11                     	
+STA @11                     
+LDI $12                     	
+STA @12                     
+LDI $13                     	
+STA @13                     
+LDI $14                     	
+STA @14                     
+LDI $15                     	
+STA @15                     
+LDI $0                      	
+STA @510                    
+STA @511                    
+STA @509                        
+STA @0                       
+STA @258                     
+STA @257                     
+STA @256                     
+STA @288                    
+STA @289                     
+STA @290                     
+STA @291                     
+STA @292                     
+STA @293                     
+STA @32                      
+STA @33                     
+STA @34                      
+STA @35                      
+STA @36                      
+STA @37                       
+STA @16                     
+STA @17                     
+STA @18                     
+STA @19                     
+STA @10                     
+STA @21                     
+NOP
+LDA @353                     
+CEQ @1                     
+JEQ @54                   
+LDA @352                     
+CEQ @1                     
+JEQ @238                   
+LDA @356                     
+CEQ @1                     
+JEQ @0                   
+JMP @43                   
+NOP
+STA @510                    
+LDA @32                      
+STA @288                    
+LDA @33                     
+STA @289                     
+LDA @34                      
+STA @290                    
+LDA @35                      
+STA @291                     
+LDA @36                      
+STA @292                     
+LDA @37                      
+STA @293                     
+NOP
+LDA @320                     
+CEQ @10                     
+JEQ @85                   
+CEQ @11                     
+JEQ @85                   
+CEQ @12                     
+JEQ @85                   
+CEQ @13                     
+JEQ @85                   
+CEQ @14                     
+JEQ @85                   
+CEQ @15                     
+JEQ @85                   
+STA @288                     
+STA @32                       
+JMP @89                   
+NOP
+LDA @9                     
+STA @288                     
+STA @32                      
+NOP
+LDA @353                     
+CEQ @0                      
+JEQ @68                    
+STA @510                     
+NOP
+LDA @320                     
+CEQ @10                     
+JEQ @111                   
+CEQ @11                     
+JEQ @111                   
+CEQ @12                     
+JEQ @111                   
+CEQ @13                     
+JEQ @111                   
+CEQ @14                     
+JEQ @111                   
+CEQ @15                     
+JEQ @111                   
+STA @288                     
+STA @33                       
+JMP @115                   
+NOP
+LDA @9                     
+STA @288                     
+STA @33                      
+NOP
+LDA @353                     
+CEQ @0                      
+JEQ @94                    
+STA @510                     
+NOP
+LDA @320                     
+CEQ @10                     
+JEQ @137                   
+CEQ @11                     
+JEQ @137                   
+CEQ @12                     
+JEQ @137                   
+CEQ @13                     
+JEQ @137                   
+CEQ @14                     
+JEQ @137                   
+CEQ @15                     
+JEQ @137                   
+STA @288                     
+STA @34                       
+JMP @141                   
+NOP
+LDA @9                     
+STA @288                     
+STA @34                      
+NOP
+LDA @353                     
+CEQ @0                      
+JEQ @120                   
+STA @510                     
+NOP
+LDA @320                     
+CEQ @10                     
+JEQ @163                   
+CEQ @21                     
+JEQ @163                   
+CEQ @22                     
+JEQ @163                   
+CEQ @23                     
+JEQ @163                   
+CEQ @24                     
+JEQ @163                   
+CEQ @25                     
+JEQ @163                   
+STA @288                     
+STA @35                       
+JMP @167                   
+NOP
+LDA @9                     
+STA @288                     
+STA @35                      
+NOP
+LDA @353                     
+CEQ @0                      
+JEQ @146                   
+STA @510                     
+NOP
+LDA @320                     
+CEQ @10                     
+JEQ @189                   
+CEQ @21                     
+JEQ @189                   
+CEQ @22                     
+JEQ @189                   
+CEQ @23                     
+JEQ @189                   
+CEQ @24                     
+JEQ @189                   
+CEQ @25                     
+JEQ @189                   
+STA @288                     
+STA @36                       
+JMP @193                   
+NOP
+LDA @0                     
+STA @288                     
+STA @36                      
+NOP
+LDA @353                     
+CEQ @0                      
+JEQ @172                   
+STA @510                     
+NOP
+LDA @320  
+CEQ @10                     	
+JEQ @215           	
+CEQ @21                     	
+JEQ @215           	
+CEQ @22                     	
+JEQ @215           	
+CEQ @23                     	
+JEQ @215           	
+CEQ @24                     	
+JEQ @215           	
+CEQ @25                     	
+JEQ @215           	
+STA @288                    	
+STA @37                      	
+JMP @219           	
+NOP
+LDA @9                     	
+STA @288                    	
+STA @37                      	
+NOP
+LDA @353                    	
+CEQ @0                     	
+JEQ @198           	
+STA @510                    	
+LDA @16                     	
+STA @288                    	
+LDA @17                     	
+STA @289                    	
+LDA @18                     	
+STA @290                    	
+LDA @19                     	
+STA @291                    	
+LDA @20                     	
+STA @292                    	
+LDA @21                     	
+STA @293                    	
+JMP @43           	
+NOP
+STA @511 
+LDA @16      
+SOMA @1
+CEQ @10
+JEQ @246
+STA @16
+STA @288                    	
+JMP @276
+LDI $0
+STA @16
+STA @288                    	
+LDA @17
+SOMA @1
+CEQ @10
+JEQ @256
+STA @17
+STA @289                    	
+JMP @276
+LDI $0
+STA @17
+STA @289                    	
+LDA @18
+SOMA @1
+CEQ @10
+JEQ @266
+STA @18
+STA @290                    	
+JMP @276
+LDI $0
+STA @18
+STA @290                    	
+JMP @276           	
+NOP
+LDA @1                     	
+STA @258                    	
+LDA @356                    	
+CEQ @1                     	
+JEQ @0           	
+NOP
+LDA @16                     	
+CEQ @16                      	
+JEQ @281           	
+JMP @43           	
+NOP
+LDA @17                     	
+CEQ @1                      	
+JEQ @286        	
+JMP @43           	
+NOP
+LDA @18                     	
+CEQ @2                      	
+JEQ @291           	
+JMP @43           	
+NOP
+LDA @19                     	
+CEQ @3                      	
+JEQ @296           	
+JMP @43           	
+NOP
+LDA @20                     	
+CEQ @4                      	
+JEQ @301          	
+JMP @43           	
+NOP
+LDA @21                     	
+CEQ @5                      	
+JEQ @306           	
+JMP @43           	
+NOP
+LDA @1                     	
+STA @258                    	
+STA @257                    	
+LDI $255                    	
+STA @256                    	
+LDA @356                    	
+CEQ @1                     	
+JEQ @0           	
+JMP @306

@@ -1,0 +1,247 @@
+NOP
+LDI R1, $0                    # Carrega 0 no registrador R1
+STA R1, @510                  # Reseta a leitura de KEY1
+STA R1, @511                  # Reseta a leitura de KEY0
+STA R1, @0                    # Zera a primeira posição de memória na RAM
+STA R1, @288                  # Limpa o display HEX0
+STA R1, @289                  # Limpa o display HEX1
+STA R1, @290                  # Limpa o display HEX2
+STA R1, @291                  # Limpa o display HEX3
+STA R1, @292                  # Limpa o display HEX4
+STA R1, @293                  # Limpa o display HEX5
+STA R1, @320                  # Define todos os switches SW0 a SW7 como desligados
+STA R1, @321                  # Define o switch SW8 como desligado
+STA R1, @322                  # Define o switch SW9 como desligado
+STA R1, @16                   # Zera o endereço de memória 16
+STA R1, @17                   # Zera o endereço de memória 17
+STA R1, @18                   # Zera o endereço de memória 18
+STA R1, @19                   # Zera o endereço de memória 19
+STA R1, @20                   # Zera o endereço de memória 20
+STA R1, @21                   # Zera o endereço de memória 21
+STA R1, @35                   # Zera o endereço de memória 35
+LDI R2, $1                    # Carrega 1 no registrador R2
+STA R2, @1                    # Armazena 1 no endereço 1
+LDI R2, $6                    # Carrega 6 no registrador R2
+STA R2, @6                    # Armazena 6 no endereço 6
+LDI R2, $10                   # Carrega 10 no registrador R2
+STA R2, @10                   # Armazena 10 no endereço 10
+LDI R2, $15                   # Carrega 15 no registrador R2
+STA R2, @15                   # Armazena 15 no endereço 15
+LDI R2, $2                    # Carrega 2 no registrador R2
+STA R2, @2                    # Armazena 2 no endereço 2
+LDI R2, $4                    # Carrega 4 no registrador R2
+STA R2, @4                    # Armazena 4 no endereço 4
+LDI R2, $3                    # Carrega 3 no registrador R2
+STA R2, @3                    # Armazena 3 no endereço 3
+LDI R2, $5                    # Carrega 5 no registrador R2
+STA R2, @5                    # Armazena 5 no endereço 5
+NOP
+LOOP:
+JSR @ESCREVER                 # Chama a rotina ESCREVER
+LDA R1, @352                  # Carrega a base de tempo
+AND R1, @1                    # Mascara
+CEQ R1, @0                    # Verifica se o tempo foi passado
+JEQ @PASSA1                   # Pula para PASSA1 se não estiver pressionado
+JSR @INCREMENTA               # Executa a rotina INCREMENTA
+PASSA1:
+LDA R1, @353                  # Carrega o botão KEY1 no registrador R1
+AND R1, @1                    # Mascara
+CEQ R1, @0                    # Verifica se o botão KEY1 está pressionado
+JEQ @PASSA2                   # Pula para PASSA2 se não estiver pressionado
+JSR @CONFIGURACAO             # Executa a rotina CONFIGURACAO
+PASSA2:
+JMP @LOOP                     # Retorna ao início do LOOP
+NOP
+INCREMENTA:
+LDA R1, @0                    # Carrega 0 no registrador R1
+STA R1, @511                  # Limpa a leitura do tempo
+LDA R2, @10                   # Carrega o valor 10 no registrador R2
+LDA R3, @6                    # Carrega o valor 6 no registrador R3
+LDA R4, @16                   # Carrega o valor dos segundos no registrador R4
+SOMA R4, @1                   # Incrementa o valor dos segundos
+STA R4, @16                   # Armazena o novo valor dos segundos
+CEQ R2, @16                   # Compara o novo valor dos segundos com 10
+JEQ @INCREMENTADEZENASEGUNDO  # Pula para incrementar a dezena de segundos se necessário
+LDA R4, @16
+STA R4, @288                  # Atualiza o display HEX0 com o novo valor dos segundos
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENASEGUNDO:
+STA R1, @16
+STA R1, @288                  # Zera os segundos e atualiza o display HEX0 quando alcança 10
+LDA R4, @17
+SOMA R4, @1                   # Incrementa a dezena de segundos
+STA R4, @17                   # Atualiza a dezena de segundos na memória
+CEQ R3, @17                   # Compara a dezena de segundos com 6
+JEQ @INCREMENTAUNIDADEMINUTO  # Incrementa a unidade de minutos se necessário
+LDA R4, @17
+STA R4, @289                  # Atualiza o display HEX1 com a nova dezena de segundos
+JMP @RETORNOINCREMENTA
+INCREMENTAUNIDADEMINUTO:
+STA R1, @17
+STA R1, @289                  # Zera a dezena de segundos e atualiza o display HEX1
+LDA R4, @18
+SOMA R4, @1                   # Incrementa a unidade de minutos
+STA R4, @18                   # Atualiza a unidade de minutos na memória
+CEQ R2, @18                   # Compara a unidade de minutos com 10
+JEQ @INCREMENTADEZENAMINUTO   # Incrementa a dezena de minutos se necessário
+LDA R4, @18
+STA R4, @290                  # Atualiza o display HEX2 com a nova unidade de minutos
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENAMINUTO:
+STA R1, @18
+STA R1, @290                  # Zera a unidade de minutos e atualiza o display HEX2
+LDA R4, @19
+SOMA R4, @1                   # Incrementa a dezena de minutos
+STA R4, @19                   # Atualiza a dezena de minutos na memória
+CEQ R3, @19                   # Compara a dezena de minutos com 6
+JEQ @INCREMENTAUNIDADEHORA    # Incrementa a unidade de horas se necessário
+LDA R4, @19
+STA R4, @291                  # Atualiza o display HEX3 com a nova dezena de minutos
+JMP @RETORNOINCREMENTA
+INCREMENTAUNIDADEHORA:
+STA R1, @19
+STA R1, @291                  # Zera a dezena de minutos e atualiza o display HEX3
+LDA R4, @20
+SOMA R4, @1                   # Incrementa a unidade de horas
+STA R4, @20                   # Atualiza a unidade de horas na memória
+CEQ R4, @4                    # Compara a unidade de horas com 4
+JEQ @PODELIGARFLAG            # Verifica a condição para ativar uma flag
+PONTO1:
+CEQ R2, @20                   # Compara a unidade de horas com 10
+JEQ @INCREMENTADEZENAHORA     # Incrementa a dezena de horas se necessário
+LDA R4, @20
+STA R4, @292                  # Atualiza o display HEX4 com a nova unidade de horas
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENAHORA:
+LDA R2, @3
+STA R1, @20
+STA R1, @292                  # Zera a unidade de horas e atualiza o display HEX4
+LDA R4, @21
+SOMA R4, @1                   # Incrementa a dezena de horas
+STA R4, @21                   # Atualiza a dezena de horas na memória
+CEQ R2, @21                   # Compara a dezena de horas com 3
+JEQ @0                        # Zera a dezena de horas se necessário
+LDA R4, @21
+STA R4, @293                  # Atualiza o display HEX5 com a nova dezena de horas
+JMP @RETORNOINCREMENTA
+PODELIGARFLAG:
+LDA R2, @21
+CEQ R2, @2                    # Verifica se a dezena de horas alcançou 2
+JEQ @INCREMENTADEZENAHORA
+JMP @PONTO1
+RETORNOINCREMENTA:
+RET                           # Retorna da sub-rotina INCREMENTA
+CONFIGURACAO:
+LDA R1, @0                    # Carrega 0 no registrador R1 para uso geral
+STA R1, @510                  # Limpa a leitura de KEY1
+STA R1, @288                  # Limpa o display HEX0
+STA R1, @289                  # Limpa o display HEX1
+STA R1, @290                  # Limpa o display HEX2
+STA R1, @291                  # Limpa o display HEX3
+STA R1, @292                  # Limpa o display HEX4
+STA R1, @293                  # Limpa o display HEX5
+AGUARDARKEY1_1:
+LDA R2, @320                  # Lê o estado dos switches SW0 a SW7
+AND R2, @15                   # Máscara
+STA R2, @16                   # Armazena no endereço de memória dos segundos (unidade)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da unidade dos segundos
+LDA R3, @1                    # Carrega 1 no registrador R3
+STA R3, @293                  # Mostra '1' no display HEX5 para indicar configuração da unidade dos segundos
+LDA R4, @353                  # Lê o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @CONFIGDEZSEG             # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_1           # Continua no loop até que KEY1 seja pressionado
+CONFIGDEZSEG:
+LDA R1, @0                    # Carrega 0 novamente para limpeza
+STA R1, @510                  # Limpa a leitura de KEY1
+AGUARDARKEY1_2:
+LDA R2, @320                  # Lê novamente o estado dos switches
+AND R2, @15                   # Aplica a mesma máscara
+STA R2, @17                   # Armazena no endereço de memória dos segundos (dezena)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da dezena dos segundos
+LDA R3, @2                    # Carrega 2 no registrador R3
+STA R3, @293                  # Mostra '2' no display HEX5 para indicar configuração da dezena dos segundos
+LDA R4, @353                  # Verifica novamente o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @CONFIGUNIMIN             # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_2           # Continua no loop até que KEY1 seja pressionado
+CONFIGUNIMIN:
+LDA R1, @0                    # Carrega 0 para limpeza
+STA R1, @510                  # Limpa a leitura de KEY1
+AGUARDARKEY1_3:
+LDA R2, @320                  # Lê o estado dos switches novamente
+AND R2, @15                   # Aplica a mesma máscara
+STA R2, @18                   # Armazena no endereço de memória dos minutos (unidade)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da unidade dos minutos
+LDA R3, @3                    # Carrega 3 no registrador R3
+STA R3, @293                  # Mostra '3' no display HEX5 para indicar configuração da unidade dos minutos
+LDA R4, @353                  # Verifica novamente o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @CONFIGDEZMIN             # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_3           # Continua no loop até que KEY1 seja pressionado
+CONFIGDEZMIN:
+LDA R1, @0                    # Carrega 0 para limpeza
+STA R1, @510                  # Limpa a leitura de KEY1
+AGUARDARKEY1_4:
+LDA R2, @320                  # Lê o estado dos switches novamente
+AND R2, @15                   # Aplica a mesma máscara
+STA R2, @19                   # Armazena no endereço de memória dos minutos (dezena)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da dezena dos minutos
+LDA R3, @4                    # Carrega 4 no registrador R3
+STA R3, @293                  # Mostra '4' no display HEX5 para indicar configuração da dezena dos minutos
+LDA R4, @353                  # Verifica novamente o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @CONFIGUNIHORA            # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_4           # Continua no loop até que KEY1 seja pressionado
+CONFIGUNIHORA:
+LDA R1, @0                    # Carrega 0 para limpeza
+STA R1, @510                  # Limpa a leitura de KEY1
+AGUARDARKEY1_5:
+LDA R2, @320                  # Lê o estado dos switches novamente
+AND R2, @15                   # Aplica a mesma máscara
+STA R2, @20                   # Armazena no endereço de memória das horas (unidade)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da unidade das horas
+LDA R3, @5                    # Carrega 5 no registrador R3
+STA R3, @293                  # Mostra '5' no display HEX5 para indicar configuração da unidade das horas
+LDA R4, @353                  # Verifica novamente o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @CONFIGDEZHORA            # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_5           # Continua no loop até que KEY1 seja pressionado
+CONFIGDEZHORA:
+LDA R1, @0                    # Carrega 0 para limpeza
+STA R1, @510                  # Limpa a leitura de KEY1
+AGUARDARKEY1_6:
+LDA R2, @320                  # Lê o estado dos switches novamente
+AND R2, @15                   # Aplica a mesma máscara
+STA R2, @21                   # Armazena no endereço de memória das horas (dezena)
+STA R2, @288                  # Atualiza display HEX0 com a configuração da dezena das horas
+LDA R3, @6                    # Carrega 6 no registrador R3
+STA R3, @293                  # Mostra '6' no display HEX5 para indicar configuração da dezena das horas
+LDA R4, @353                  # Verifica novamente o estado da chave KEY1
+CEQ R4, @1                    # Compara com 1
+JEQ @RETORNOCONFIGURACAO      # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_6           # Continua no loop até que KEY1 seja pressionado
+RETORNOCONFIGURACAO:
+LDA R1, @0                    # Carrega 0 para limpeza final
+STA R1, @510                  # Limpa a leitura final de KEY1
+STA R1, @288                  # Limpa o display HEX0 
+STA R1, @289                  # Limpa o display HEX1 
+STA R1, @290                  # Limpa o display HEX2 
+STA R1, @291                  # Limpa o display HEX3 
+STA R1, @292                  # Limpa o display HEX4 
+STA R1, @293                  # Limpa o display HEX5 
+RET                           # Retorna da sub-rotina CONFIGURACAO
+ESCREVER:
+LDA R1, @16                   # Carrega o valor dos segundos (unidade) no registrador R1
+STA R1, @288                  # Atualiza o display HEX0 com os segundos (unidade)
+LDA R1, @17                   # Carrega o valor dos segundos (dezena) no registrador R1
+STA R1, @289                  # Atualiza o display HEX1 com os segundos (dezena)
+LDA R1, @18                   # Carrega o valor dos minutos (unidade) no registrador R1
+STA R1, @290                  # Atualiza o display HEX2 com os minutos (unidade)
+LDA R1, @19                   # Carrega o valor dos minutos (dezena) no registrador R1
+STA R1, @291                  # Atualiza o display HEX3 com os minutos (dezena)
+LDA R1, @20                   # Carrega o valor das horas (unidade) no registrador R1
+STA R1, @292                  # Atualiza o display HEX4 com as horas (unidade)
+LDA R1, @21                   # Carrega o valor das horas (dezena) no registrador R1
+STA R1, @293                  # Atualiza o display HEX5 com as horas (dezena)
+RET                           # Retorna da sub-rotina ESCREVER

@@ -1,0 +1,315 @@
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @32  #Joga no limite de unidade
+LDI $9
+STA @293
+AGUARDARKEY1_1:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @DEFINIRLIMITEDEZ
+JMP @AGUARDARKEY1_1
+DEFINIRLIMITEDEZ:
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @33  #Joga no limite de dezena
+LDI $8
+STA @293
+AGUARDARKEY1_2:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @DEFINIRLIMITECEN
+JMP @AGUARDARKEY1_2
+DEFINIRLIMITECEN:
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @34  #Joga no limite de centena
+LDI $7
+STA @293
+AGUARDARKEY1_3:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @DEFINIRLIMITEUNIM
+JMP @AGUARDARKEY1_3
+DEFINIRLIMITEUNIM:
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @35  #Joga no limite de Unidade milhar
+LDI $6
+STA @293
+AGUARDARKEY1_4:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @DEFINIRLIMITEDEZM
+JMP @AGUARDARKEY1_4
+DEFINIRLIMITEDEZM:
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @36  #Joga no limite de dezena milhar
+LDI $5
+STA @293
+AGUARDARKEY1_5:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @DEFINIRLIMITECENM
+JMP @AGUARDARKEY1_5
+DEFINIRLIMITECENM:
+LDA @0    #Carrega 0
+STA @510  #Limpa KEY1
+STA @288  #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+LDA @320  #Carrega os switchs
+AND @15   #Mascara os switchs
+STA @288  #Joga no display
+STA @37  #Joga no limite de centena milhar
+LDI $4
+STA @293
+AGUARDARKEY1_6:
+LDA @353
+CEQ @1   #se clicou, pula pra baixo, se nao volta espera
+JEQ @RETORNOCONFIGURACAO
+JMP @AGUARDARKEY1_6
+RETORNOCONFIGURACAO:
+RET
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LDI $0 #Carrega 0
+STA @510 #Limpa as KEYS
+STA @511
+STA @0 #valor 0
+STA @288 #Limpa os displays
+STA @289
+STA @290
+STA @291
+STA @292
+STA @293
+STA @256 #Limpa os LEDs
+STA @257
+STA @258
+STA @320 #Limpa os switchs
+STA @321
+STA @322
+STA @16 #Limpando os CONTADORES (Unidade, Dezenas...)
+STA @17
+STA @18
+STA @19
+STA @20
+STA @21
+STA @32 #Limpando os limites de contagem (Unidade, Dezenas...)
+STA @33
+STA @34
+STA @35
+STA @36
+STA @37
+STA @27 #Flag limite 
+LDI $1 #Carrega 1
+STA @1 #valor 1
+LDI $10 #Carrega 10
+STA @10 #valor 10
+LDI $15 #Carrega 15
+STA @15 #valor 15
+LOOP:
+LDA @352  #Ler key0
+AND @1
+CEQ @0       #Se for 0, passa, se for 1 faz as subrotinas
+JEQ @PASSAKEY0       #Se nao, 
+JSR @INCREMENTA   #Se sim, vai para o Incrementa
+JSR @VERIFICARLIMITE
+PASSAKEY0:
+LDA @353 #Ler key1
+AND @1
+CEQ @0      #Se for 0, passa, se for 1 faz as subrotinas
+JEQ @PASSAKEY1
+JSR @CONFIGURACAO
+PASSAKEY1:
+LDA @356 #Ler FPGA_RESET
+AND @1
+CEQ @0
+JEQ @PASSAFPGARESET
+JSR @REINICIACONTAGEM
+PASSAFPGARESET:
+JMP @LOOP
+NOP
+INCREMENTA:
+STA @511 #Limpa key0
+LDA @27 #Carrega flag limite
+CEQ @1  #Compara com 1
+JEQ @RETORNOINCREMENTA
+NOP
+LDA @16
+SOMA @1
+STA @16
+LDA @16
+CEQ @10
+JEQ @INCREMENTADEZENA  #xxxxxx
+LDA @16
+STA @288
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENA:
+LDA @0
+STA @16
+STA @288
+LDA @17
+SOMA @1
+STA @17
+LDA @17
+CEQ @10
+JEQ @INCREMENTACENTENA #xxxxxx
+LDA @17
+STA @289
+JMP @RETORNOINCREMENTA
+INCREMENTACENTENA:
+LDA @0
+STA @17
+STA @288
+LDA @18
+SOMA @1
+STA @18
+LDA @18
+CEQ @10
+JEQ @INCREMENTAMILHAR #xxxxxx
+LDA @18
+STA @290
+JMP @RETORNOINCREMENTA
+INCREMENTAMILHAR:
+LDA @0
+STA @18
+STA @290
+LDA @19
+SOMA @1
+STA @19
+LDA @19
+CEQ @10
+JEQ @INCREMENTADEZENAMILHAR #xxxxxx
+LDA @18
+STA @291
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENAMILHAR:
+LDA @0
+STA @19
+STA @291
+LDA @20
+SOMA @1
+STA @20
+LDA @20
+CEQ @10
+JEQ @INCREMENTACENTENAMILHAR #xxxxxx
+LDA @20
+STA @292
+JMP @RETORNOINCREMENTA
+INCREMENTACENTENAMILHAR:
+LDA @0
+STA @20
+STA @292
+LDA @21
+SOMA @1
+STA @21
+LDA @21
+CEQ @10
+JEQ @OVERFLOW #xxxxxx
+LDA @21
+STA @293
+JMP @RETORNOINCREMENTA
+OVERFLOW:
+LDA @1
+STA @258
+JMP @RETORNOINCREMENTA
+RETORNOINCREMENTA:
+RET
+CONFIGURACAO:
+LDI $5
+STA @293
+RET
+REINICIACONTAGEM:
+JMP @0
+RET
+VERIFICARLIMITE:
+RET

@@ -1,0 +1,147 @@
+NOP 
+LDI $0    	#Início do Setup
+STA @288    	#Zerando hexas
+STA @289
+STA @290
+STA @291
+STA @292
+STA @293
+STA @256    	#Zerando leds
+STA @257
+STA @258
+STA @0    	#Armazenando 0 em unidade, dezena, centena, etc
+STA @1
+STA @2
+STA @3
+STA @4
+STA @5
+STA @6    	#Constante de comparacao (0)
+STA @15   	#Flag que para contagem
+STA @510
+STA @511
+STA @509
+LDI $1
+STA @7    	#Constante de Incremento (1)
+LDI $10
+STA @8    	#Constante de limite no display (10)
+LDI $0
+STA @9    	#Limite de contagem em unidade, dezena, centena, etc
+STA @10  
+STA @11
+STA @12
+STA @13
+STA @14
+LDI $9
+STA @16  	#Constante de limite de valor
+NOP  	#Loop principal
+LDA @353 	# Le o valor de KEY1
+CEQ @6 	# Compara o valor de KEY1 com 0
+JEQ @INICIOLOOP 	# Se for igual a 0, fica no aguardo para quando for 1
+JSR @CONFIGLIMITE 	# Se for diferente de 0, entra na sub rotina de configuracao de Limite
+NOP
+LDA @6 	#Carrega 0 no acumulador
+STA @288 	# Zera o HEX1
+STA @289 	# Zera o HEX2
+STA @290 	# Zera o HEX3
+STA @291 	# Zera o HEX4
+STA @292 	# Zera o HEX5
+STA @293 	# Zera o HEX6
+STA @256 	# Zera os LEDS(7~0)
+STA @258 	# Zera os LED(9)
+STA @257 	# Zera os LED(8) 
+NOP  	# Incrementa ate chegar no limite de contagem
+LDA @352 	# Le o valor de KEY0
+CEQ @6   	# Compara o valor de KEY0 com 0
+JEQ @PULA1 	# Se for igual a 0, nao incrementa e atualiza os displays
+JSR @INCREMENTA 	# Se for diferente de 0, entra na sub rotina de incremento
+NOP 
+JSR @ATUALIZA 	# Atualiza os displays
+JSR @CHECALIMITE 	# Checa pra ver se passou do limite setado
+LDA @15 	# Le o valor da flag de inibir contagem
+CEQ @6 	# Compara com 0 a flag (flag com valor 1 -> ativa, flag com valor 0 -> desativada)
+JEQ @INCREMENTADOR 	#Se a flag for 0, pode continuar incrementando
+JMP @TRAVA 	# Se for 1, trava a contagem
+NOP  	#Rotina de configuracao de limite
+LDI $1 	# Carrega o valor 1
+STA @256 	# Bota no endereco dos LEDS(7-0)
+STA @510 	#Limpa a leitura de KEY1
+NOP 
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA
+NOP 
+LDI $9
+NOP 
+STA @288 	# Hex 0
+LDA @353 	# Le KEY1
+CEQ @6 	#Compara KEY1 com 0
+JEQ @ESPERAUNIDADE  	#Se for 0, ou seja, nao esta apertado, espera ate apertar
+STA @510 	#Limpa a leitura de KEY1
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO2 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA2
+NOP 
+LDI $9
+NOP 
+STA @9   	#Armazena o valor das chaves no limite das unidades
+NOP 
+LDI $4 	 #Carrega o valor 4
+STA @256 	# Bota o valor nos LEDS
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO3 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA3
+NOP 
+LDI $9
+NOP 
+STA @289 	# Hex 1
+LDA @353 	#Le o valor de KEY1 novamente
+CEQ @6 	#Compara com 0 o valor de KEY1 
+JEQ @ESPERADEZENA 	#Se for igual a 0, ficar em LOOP "esperando" o valor mudar
+STA @510 	#Se for diferente de 0, Limpa a leitura de KEY1
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO4 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA4
+NOP 
+LDI $9
+NOP 
+STA @10 	#Armazena o valor das chaves no limte das dezenas
+NOP 
+LDI $16 	# Carrega o valor 16 no acumulador
+STA @256 	# Bota o valor nos LEDS
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO5 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA5
+NOP 
+LDI $9
+NOP 
+STA @290 	# Hex 2
+LDA @353 	#Le o valor de KEY1 novamente
+CEQ @6 	#Compara com 0 o valor de KEY1 
+JEQ @ESPERACENTENA 	#Se for igual a 0, ficar em LOOP "esperando" o valor mudar
+STA @510 	#Se for diferente de 0, Limpa a leitura de KEY1
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO6 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA6
+NOP 
+LDI $9
+NOP 
+STA @11 	#Armazena o valor das chaves no limite das centenas
+NOP 
+LDI $32 	# Carrega o valor 32 no acumulador
+STA @256 	# Bota o valor nos LEDS
+LDA @320 	#Le o valor das chaves SW(7~0)
+GT @16 	#Compara com 9
+JGT @VALORATUALIZADO7 	#Se for maior que 9, atualiza os displays
+JMP @IGNORA7
+NOP 
+LDI $9
+NOP 
+STA @291 	# Hex 3
+LDA @353 	#Le o valor de KEY1 novamente
+CEQ @6 	#Compara com 

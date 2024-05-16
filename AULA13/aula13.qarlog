@@ -1,0 +1,37 @@
+Quartus Prime Archive log --	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/aula13.qarlog
+
+Archive:	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/aula13.qar
+Date:		Fri Apr 26 00:52:11 2024
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/CPU.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/MIF_file.mif
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/ROMMIPS.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/ULASomaSub.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/aula13.qpf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/aula13.qsf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/bancoRegistradoresArqRegMem.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/bancoRegistradoresArqRegReg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/banco_reg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/buffer_3_state_8portas.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/conversorHex7Seg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/decoder3x8.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/decoderInstru.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/divisorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/divisorGenerico_e_Interface.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/edgeDetector.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/flipflopGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/logicaDesvio.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/memoriaRAM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/memoriaROM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/muxGenerico2x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/muxGenerico4x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/registradorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/somaConstante.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA13/top_level.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 26 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

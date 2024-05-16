@@ -1,0 +1,65 @@
+NOP   
+LDI $1                      	#Carrega 1 no acumulador
+STA @63                     	#Salva 1 no endereço 63 da RAM
+LDI $15                   	     #Carrega 9 no acumulador
+STA @19                     	#Salva 9 no endereço 19 da RAM
+LDI $10                     	#Carrega 10 no acumulador
+STA @20                     	#Salva 10 no endereço 20 da RAM
+LDI $0                          #Carrega 0 no acumulador
+STA @510                    	#Limpa leitura KEY1
+STA @511                    	#Limpa leitura KEY0
+STA @509                    	#Limpa leitura Reset           	
+STA @62                     	#Salva 0 no endereço 62 da RAM
+STA @258                    	#Apaga o LED 9
+STA @257                    	#Apaga o LED 8
+STA @256                    	#Apaga o LED 7 a 0 
+STA @288                    	#Zera o HEX 0
+STA @289                    	#Zera o HEX 1
+STA @290                    	#Zera o HEX 2
+STA @291                    	#Zera o HEX 3
+STA @292                    	#Zera o HEX 4
+STA @293                    	#Zera o HEX 5
+STA @0                      	#Zera o endereço 0 da RAM (Limite das unidades)
+STA @1                      	#Zera o endereço 1 da RAM (Limite das dezenas)
+STA @2                      	#Zera o endereço 2 da RAM (Limite das centenas) 
+STA @3                      	#Zera o endereço 3 da RAM (Limite dos milhares) 
+STA @4                      	#Zera o endereço 4 da RAM (Limite das dezenas de milhares)
+STA @5                      	#Zera o endereço 5 da RAM (Limite das centenas de milhares) 
+STA @10                     	#Zera o endereço 10 da RAM (Valor atual das unidades) 
+STA @11                     	#Zera o endereço 11 da RAM (Valor atual das dezenas)
+STA @12                     	#Zera o endereço 12 da RAM (Valor atual das centenas)
+STA @13                     	#Zera o endereço 13 da RAM (Valor atual dos milhares)
+STA @14                     	#Zera o endereço 14 da RAM (Valor atual das dezenas de milhares)
+STA @15                     	#Zera o endereço 15 da RAM (Valor atual das centenas de milhares)
+NOP                             #LOOP PRINCIPAL
+LDA @353
+AND @63                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @39                       #Se 0, Linha de carregar o valor do key0
+JSR @51           	        #Se 1, subrotina CONFIGURACAO LIMITE
+LDA @352
+AND @63                    	#Carrega o valor do KEY0 no acumulador
+CEQ @62                     	#Compara o valor do KEY0 com 62 (0)
+JEQ @45                       #Se 0, Linha de carregar o valor do reset
+JSR @59                       #Se 1, SUBROTINA VERIFICACAO LIMITE
+JSR @55                       #Se 1, subrotina INCREMENTO
+LDA @356
+AND @63                    	#Carrega o valor do Reset no acumulador
+CEQ @62                     	#Compara o valor do Reset com 62 (0)
+JEQ @51        	            #Se 0, linha de JMP inicial
+JSR @63                       #Se 1, subrotina FPGA RESET
+JMP @33          	            #Se nenhum dos botoes forem clicados, vai para o label Start (Laco principal)  linha ~34
+NOP                             #SUBROTINA CONFIGURACAO LIMITE
+LDI $1
+STA @288
+RET
+NOP                             #SUBROTINA INCREMENTO
+LDI $2
+STA @288
+RET
+NOP                             #SUBROTINA VERIFICACAO DE LIMITE
+LDI $3
+STA @288
+RET
+NOP #SUBROTINA FPGA RESET
+JMP @0

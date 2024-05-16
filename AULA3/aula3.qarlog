@@ -1,0 +1,23 @@
+Quartus Prime Archive log --	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/aula3.qarlog
+
+Archive:	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/aula3.qar
+Date:		Mon Mar 11 17:22:51 2024
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/ROM.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/ULASomaSub.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/Waveform.vwf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/aula3.qpf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/aula3.qsf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/decoderInstru.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/edgeDetector.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/muxGenerico2x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/registradorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/somaConstante.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA3/top_level.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 12 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

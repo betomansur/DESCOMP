@@ -1,0 +1,295 @@
+NOP
+LDI $0 # Carrega o valor 0 no acumulador
+STA @510 # Limpa a leitura de KEY0 escrevendo no endereço de memória 510
+STA @511 # Limpa a leitura de KEY1 escrevendo no endereço de memória 511
+STA @509 # Limpa a leitura de FPGA_RESET escrevendo no endereço de memória 509
+STA @0 # Define o valor no endereço de memória 0 como 0
+STA @288 # Limpa o display HEX0
+STA @289 # Limpa o display HEX1
+STA @290 # Limpa o display HEX2
+STA @291 # Limpa o display HEX3
+STA @292 # Limpa o display HEX4
+STA @293 # Limpa o display HEX5
+STA @256 # Limpa todos os LEDs de LEDR0 a LEDR7
+STA @257 # Limpa LEDR8
+STA @258 # Limpa LEDR9
+STA @320 # Limpa o valor lido dos switches SW0 a SW7
+STA @321 # Limpa o valor lido do switch SW8
+STA @322 # Limpa o valor lido do switch SW9
+STA @16 # Reseta o contador no endereço de memória para Unidade
+STA @17 # Reseta o contador no endereço de memória para Dezenas
+STA @18 # Reseta o contador no endereço de memória para Centenas
+STA @19 # Reseta o contador no endereço de memória para Milhares
+STA @20 # Reseta o contador no endereço de memória para Centenas de Milhar
+STA @21 # Reseta o contador no endereço de memória para Dezenas de Milhar
+STA @32 # Reseta os limites de contagem para Unidade
+STA @33 # Reseta os limites de contagem para Dezenas
+STA @34 # Reseta os limites de contagem para Centenas
+STA @35 # Reseta os limites de contagem para Unidade de Milhar
+STA @36 # Reseta os limites de contagem para Dezenas de Milhar
+STA @37 # Reseta os limites de contagem para Centenas de Milhar
+STA @27 # Limpa a flag de limite
+LDI $1 # Carrega o valor 1 no acumulador
+STA @1 # Define o valor no endereço de memória 1 como 1
+LDI $10 # Carrega o valor 10 no acumulador
+STA @10 # Define o valor no endereço de memória 10 como 10
+LDI $15 # Carrega o valor 15 no acumulador
+STA @15 # Define o valor no endereço de memória 15 como 15
+LOOP:
+LDA @352  # Lê o estado da chave KEY0
+AND @1  # Aplica máscara para isolar o bit 0
+CEQ @0  # Compara com 0, continua se KEY0 não estiver pressionado
+JEQ @PASSAKEY0  # Salta se igual, ou seja, KEY0 não pressionado
+JSR @INCREMENTA  # Chama sub-rotina para incrementar contadores
+JSR @VERIFICARLIMITE # Chama sub-rotina para verificar se os contadores atingiram limites
+PASSAKEY0:
+LDA @353 # Lê o estado da chave KEY1
+AND @1  # Aplica máscara para isolar o bit 0
+CEQ @0  # Compara com 0, continua se KEY1 não estiver pressionado
+JEQ @PASSAKEY1 # Salta se igual, ou seja, KEY1 não pressionado
+JSR @CONFIGURACAO # Chama sub-rotina de configuração se KEY1 estiver pressionado
+PASSAKEY1:
+LDA @356 # Lê o estado do botão FPGA_RESET
+AND @1  # Aplica máscara para isolar o bit 0
+CEQ @0  # Compara com 0, continua se FPGA_RESET não estiver pressionado
+JEQ @PASSAFPGARESET # Salta se igual, ou seja, FPGA_RESET não pressionado
+JSR @REINICIACONTAGEM  # Chama sub-rotina para reiniciar a contagem
+PASSAFPGARESET:
+JMP @LOOP  # Volta ao início do loop principal
+NOP
+INCREMENTA:
+STA @511 # Limpa a leitura de KEY0
+LDA @27 # Carrega a flag de limite
+CEQ @1  # Compara com 1
+JEQ @RETORNOINCREMENTA # Salta se igual, ou seja, há limite alcançado
+NOP
+LDA @16 # Carrega valor da Unidade
+SOMA @1 # Soma 1
+STA @16 # Armazena o novo valor da Unidade
+LDA @16  
+CEQ @10 # Compara se a Unidade é igual a 10
+JEQ @INCREMENTADEZENA  # Salta se igual para incrementar a Dezena
+LDA @16
+STA @288 # Atualiza display HEX0
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENA:
+LDA @0
+STA @16 # Reseta a Unidade
+STA @288 # Atualiza display HEX0
+LDA @17
+SOMA @1 # Soma 1 na Dezena
+STA @17 # Armazena o novo valor da Dezena
+LDA @17
+CEQ @10 # Compara se a Dezena é igual a 10
+JEQ @INCREMENTACENTENA # Salta se igual para incrementar a Centena
+LDA @17
+STA @289 # Atualiza display HEX1
+JMP @RETORNOINCREMENTA
+INCREMENTACENTENA:
+LDA @0
+STA @17 # Reseta a Dezena
+STA @289 # Atualiza display HEX1
+LDA @18
+SOMA @1 # Soma 1 na Centena
+STA @18 # Armazena o novo valor da Centena
+LDA @18
+CEQ @10 # Compara se a Centena é igual a 10
+JEQ @INCREMENTAMILHAR # Salta se igual para incrementar o Milhar
+LDA @18
+STA @290 # Atualiza display HEX2
+JMP @RETORNOINCREMENTA
+INCREMENTAMILHAR:
+LDA @0
+STA @18 # Reseta a Centena
+STA @290 # Atualiza display HEX2
+LDA @19
+SOMA @1 # Soma 1 no Milhar
+STA @19 # Armazena o novo valor do Milhar
+LDA @19
+CEQ @10 # Compara se o Milhar é igual a 10
+JEQ @INCREMENTADEZENAMILHAR # Salta se igual para incrementar a Dezena de Milhar
+LDA @19
+STA @291 # Atualiza display HEX3
+JMP @RETORNOINCREMENTA
+INCREMENTADEZENAMILHAR:
+LDA @0
+STA @19 # Reseta o Milhar
+STA @291 # Atualiza display HEX3
+LDA @20
+SOMA @1 # Soma 1 na Dezena de Milhar
+STA @20 # Armazena o novo valor da Dezena de Milhar
+LDA @20
+CEQ @10 # Compara se a Dezena de Milhar é igual a 10
+JEQ @INCREMENTACENTENAMILHAR # Salta se igual para incrementar a Centena de Milhar
+LDA @20
+STA @292 # Atualiza display HEX4
+JMP @RETORNOINCREMENTA
+INCREMENTACENTENAMILHAR:
+LDA @0
+STA @20 # Reseta a Dezena de Milhar
+STA @292 # Atualiza display HEX4
+LDA @21
+SOMA @1 # Soma 1 na Centena de Milhar
+STA @21 # Armazena o novo valor da Centena de Milhar
+LDA @21
+CEQ @10 # Compara se a Centena de Milhar é igual a 10
+JEQ @OVERFLOW # Salta se igual para tratar overflow
+LDA @21
+STA @293 # Atualiza display HEX5
+JMP @RETORNOINCREMENTA
+OVERFLOW:
+LDA @1
+STA @258 # Ativa LEDR9 para indicar overflow
+JMP @RETORNOINCREMENTA
+RETORNOINCREMENTA:
+RET
+CONFIGURACAO:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+STA @288 # Limpa display HEX0
+STA @289 # Limpa display HEX1
+STA @290 # Limpa display HEX2
+STA @291 # Limpa display HEX3
+STA @292 # Limpa display HEX4
+STA @293 # Limpa display HEX5
+AGUARDARKEY1_1:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @32  # Armazena no endereço de memória dos limites para Unidade
+STA @288  # Atualiza display HEX0
+LDI $1
+STA @293 # Mostra '1' no display HEX5 para indicar configuração da Unidade
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @LIMITEDEZ # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_1
+LIMITEDEZ:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+AGUARDARKEY1_2:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @33  # Armazena no endereço de memória dos limites para Dezena
+STA @288  # Atualiza display HEX0
+LDI $2
+STA @293 # Mostra '2' no display HEX5 para indicar configuração da Dezena
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @LIMITECEN # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_2
+LIMITECEN:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+AGUARDARKEY1_3:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @34  # Armazena no endereço de memória dos limites para Centena
+STA @288  # Atualiza display HEX0
+LDI $3
+STA @293 # Mostra '3' no display HEX5 para indicar configuração da Centena
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @LIMITEUNIM # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_3
+LIMITEUNIM:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+AGUARDARKEY1_4:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @35  # Armazena no endereço de memória dos limites para Unidade de Milhar
+STA @288  # Atualiza display HEX0
+LDI $4
+STA @293 # Mostra '4' no display HEX5 para indicar configuração da Unidade de Milhar
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @LIMITEDEZM # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_4
+LIMITEDEZM:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+AGUARDARKEY1_5:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @36  # Armazena no endereço de memória dos limites para Dezena de Milhar
+STA @288  # Atualiza display HEX0
+LDI $5
+STA @293 # Mostra '5' no display HEX5 para indicar configuração da Dezena de Milhar
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @LIMITECENM # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_5
+LIMITECENM:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+AGUARDARKEY1_6:
+LDA @320  # Lê o estado dos switches
+AND @15 # Aplica máscara para isolar os 4 bits inferiores
+STA @37  # Armazena no endereço de memória dos limites para Centena de Milhar
+STA @288  # Atualiza display HEX0
+LDI $6
+STA @293 # Mostra '6' no display HEX5 para indicar configuração da Centena de Milhar
+LDA @353  # Lê o estado da chave KEY1
+CEQ @1  # Compara com 1
+JEQ @RETORNOCONFIGURACAO # Salta se KEY1 pressionado
+JMP @AGUARDARKEY1_6
+RETORNOCONFIGURACAO:
+LDA @0    # Carrega 0
+STA @510  # Limpa a leitura de KEY1
+STA @293 # Limpa display HEX5
+RET
+REINICIACONTAGEM:
+LDA @0
+STA @509 # Limpa valor no endereço 509
+STA @16 # Reseta contador de Unidade
+STA @17 # Reseta contador de Dezena
+STA @18 # Reseta contador de Centena
+STA @19 # Reseta contador de Milhar
+STA @20 # Reseta contador de Dezena de Milhar
+STA @21 # Reseta contador de Centena de Milhar
+STA @288 # Limpa display HEX0
+STA @289 # Limpa display HEX1
+STA @290 # Limpa display HEX2
+STA @291 # Limpa display HEX3
+STA @292 # Limpa display HEX4
+STA @293 # Limpa display HEX5
+STA @27 # Limpa a flag de limite
+STA @257 # Limpa LEDR8
+STA @258 # Limpa LEDR9
+RET
+VERIFICARLIMITE:
+LDA @16   # Carrega valor da Unidade
+CEQ @32 # Compara com o limite para Unidade
+JEQ @VERDEZENAS # Salta se igual para verificar limite de Dezena
+JMP @RETORNOVERIFICALIMITE
+VERDEZENAS:
+LDA @17   # Carrega valor da Dezena
+CEQ @33 # Compara com o limite para Dezena
+JEQ @VERCENTENAS # Salta se igual para verificar limite de Centena
+JMP @RETORNOVERIFICALIMITE
+VERCENTENAS:
+LDA @18   # Carrega valor da Centena
+CEQ @34 # Compara com o limite para Centena
+JEQ @VERUNIDADESM # Salta se igual para verificar limite de Unidade de Milhar
+JMP @RETORNOVERIFICALIMITE
+VERUNIDADESM:
+LDA @19   # Carrega valor da Unidade de Milhar
+CEQ @35 # Compara com o limite para Unidade de Milhar
+JEQ @VERDEZENASM # Salta se igual para verificar limite de Dezena de Milhar
+JMP @RETORNOVERIFICALIMITE
+VERDEZENASM:
+LDA @20   # Carrega valor da Dezena de Milhar
+CEQ @36 # Compara com o limite para Dezena de Milhar
+JEQ @VERCENTENASM # Salta se igual para verificar limite de Centena de Milhar
+JMP @RETORNOVERIFICALIMITE
+VERCENTENASM:
+LDA @21   # Carrega valor da Centena de Milhar
+CEQ @37 # Compara com o limite para Centena de Milhar
+JEQ @LIGARFLAG # Salta se igual para ativar flag de limite
+JMP @RETORNOVERIFICALIMITE
+LIGARFLAG:
+LDA @1
+STA @27 # Ativa a flag de limite
+STA @257 # Ativa LEDR8 para indicar o limite atingido
+RETORNOVERIFICALIMITE:
+RET

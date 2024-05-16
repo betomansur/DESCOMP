@@ -1,0 +1,242 @@
+NOP   
+LDI $1                      	#Carrega 1 no acumulador
+STA @63                     	#Salva 1 no endereço 63 da RAM
+LDI $15                   	     #Carrega 9 no acumulador
+STA @19                     	#Salva 9 no endereço 19 da RAM
+LDI $10                     	#Carrega 10 no acumulador
+STA @20                     	#Salva 10 no endereço 20 da RAM
+LDI $0                          #Carrega 0 no acumulador
+STA @510                    	#Limpa leitura KEY1
+STA @511                    	#Limpa leitura KEY0
+STA @509                    	#Limpa leitura Reset           	
+STA @62                     	#Salva 0 no endereço 62 da RAM
+STA @258                    	#Apaga o LED 9
+STA @257                    	#Apaga o LED 8
+STA @256                    	#Apaga o LED 7 a 0 
+STA @288                    	#Zera o HEX 0
+STA @289                    	#Zera o HEX 1
+STA @290                    	#Zera o HEX 2
+STA @291                    	#Zera o HEX 3
+STA @292                    	#Zera o HEX 4
+STA @293                    	#Zera o HEX 5
+STA @0                      	#Zera o endereço 0 da RAM (Limite das unidades)
+STA @1                      	#Zera o endereço 1 da RAM (Limite das dezenas)
+STA @2                      	#Zera o endereço 2 da RAM (Limite das centenas) 
+STA @3                      	#Zera o endereço 3 da RAM (Limite dos milhares) 
+STA @4                      	#Zera o endereço 4 da RAM (Limite das dezenas de milhares)
+STA @5                      	#Zera o endereço 5 da RAM (Limite das centenas de milhares) 
+STA @10                     	#Zera o endereço 10 da RAM (Valor atual das unidades) 
+STA @11                     	#Zera o endereço 11 da RAM (Valor atual das dezenas)
+STA @12                     	#Zera o endereço 12 da RAM (Valor atual das centenas)
+STA @13                     	#Zera o endereço 13 da RAM (Valor atual dos milhares)
+STA @14                     	#Zera o endereço 14 da RAM (Valor atual das dezenas de milhares)
+STA @15                     	#Zera o endereço 15 da RAM (Valor atual das centenas de milhares)
+NOP                             #LOOP PRINCIPAL
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @38                       #Se 0, Linha de carregar o valor do key0
+JSR @48           	        #Se 1, subrotina CONFIGURACAO LIMITE
+LDA @352                    	#Carrega o valor do KEY0 no acumulador
+CEQ @62                     	#Compara o valor do KEY0 com 62 (0)
+JEQ @43                       #Se 0, Linha de carregar o valor do reset
+JSR @212                       #SUBROTINA VERIFICACAO LIMITE
+JSR @136                       #Se 1, subrotina INCREMENTO
+LDA @356                    	#Carrega o valor do Reset no acumulador
+CEQ @62                     	#Compara o valor do Reset com 62 (0)
+JEQ @47        	            #Se 0, linha de JMP inicial
+JSR @240                       #Se 1, subrotina FPGA RESET
+JMP @33          	            #Se nenhum dos botoes forem clicados, vai para o label Start (Laco principal)  linha ~34
+NOP                             #SUBROTINA CONFIGURACAO LIMITE
+STA @510                    	#Limpa leitura KEY1
+LDA @0                      	#Carrega o valor do endereço 0 da RAM no acumulador (Limite das unidades)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+LDA @1                      	#Carrega o valor do endereço 1 da RAM no acumulador (Limite das dezenas)
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+LDA @2                      	#Carrega o valor do endereço 2 da RAM no acumulador (Limite das centenas)
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+LDA @3                      	#Carrega o valor do endereço 3 da RAM no acumulador (Limite dos milhares)
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+LDA @4                      	#Carrega o valor do endereço 4 da RAM no acumulador (Limite das dezenas de milhares)
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+LDA @5                      	#Carrega o valor do endereço 5 da RAM no acumulador (Limite das centenas de milhares)
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+NOP                             #(A)
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @288                        #Mostra o valor do acumulador HEX 0 (unidades)
+STA @0                      	#Salva o valor do acumulador no endereço 0 da RAM (Limite das unidades)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @62       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (A)
+STA @510                    	#Limpa leitura KEY1
+NOP                             #(B)
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @289                        #Mostra o valor do acumulador HEX 1 (dezenas)
+STA @1                      	#Salva o valor do acumulador no endereço 1 da RAM (Limite das dezenas)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @72       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (B)
+STA @510                    	#Limpa leitura KEY1
+NOP                             #(C)
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @290                        #Mostra o valor do acumulador HEX 2 (100)
+STA @2                      	#Salva o valor do acumulador no endereço 2 da RAM (Limite das 100)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @82       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (C)
+STA @510                    	#Limpa leitura KEY1
+NOP                             #(D)
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @291                        #Mostra o valor do acumulador HEX 3 (1000)
+STA @3                      	#Salva o valor do acumulador no endereço 3 da RAM (Limite das 1000)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @92       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (D)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @292                        #Mostra o valor do acumulador HEX 4 (unidades)
+STA @4                    	    #Salva o valor do acumulador no endereço 4  da RAM (Limite das 10000)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @102       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (E)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @320                    	#Carrega valor das chaves SW0 a SW7 no acumulador
+AND @19                         #Mascara do switch (00001111)
+STA @293                          #Mostra o valor do acumulador HEX 5 (unidades)
+STA @5                      	#Salva o valor do acumulador no endereço 5 da RAM (Limite das 100000)
+NOP
+LDA @353                    	#Carrega o valor do KEY1 no acumulador
+CEQ @62                     	#Compara o valor do KEY1 com 62 (0)
+JEQ @112       	            #Se 0, (não setou) NOP EMCIMA DO LDA@320 (F)
+STA @510                    	#Limpa leitura KEY1
+NOP
+LDA @10                     	#Carrega o valor do endereço 10 da RAM no acumulador (valor atual das unidades)
+STA @288                    	#Mostra o valor do acumulador HEX 0 (unidades)
+LDA @11                     	#Carrega o valor do endereço 11 da RAM no acumulador (valor atual das dezenas)
+STA @289                    	#Mostra o valor do acumulador HEX 1 (dezenas)
+LDA @12                     	#Carrega o valor do endereço 12 da RAM no acumulador (valor atual das centenas)
+STA @290                    	#Mostra o valor do acumulador HEX 2 (centenas)
+LDA @13                     	#Carrega o valor do endereço 13 da RAM no acumulador (valor atual dos milhares)
+STA @291                    	#Mostra o valor do acumulador HEX 3 (milhares)
+LDA @14                     	#Carrega o valor do endereço 14 da RAM no acumulador (valor atual das dezenas de milhares)
+STA @292                    	#Mostra o valor do acumulador HEX 4 (dezenas de milhares)
+LDA @15                     	#Carrega o valor do endereço 15 da RAM no acumulador (valor atual das centenas de milhares)
+STA @293                    	#Mostra o valor do acumulador HEX 5 (centenas de milhares)
+RET
+NOP                             #SUBROTINA INCREMENTO
+STA @511                    	#Limpa leitura KEY0
+LDA @10                     	#Carrega o valor do endereço 10 da RAM no acumulador (valor atual das unidades)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @144           	        #Se sim, vai para a proxima casa 
+STA @10                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 10 da RAM (valor atual das unidades)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDA @62                     	#Carrega o valor 62 (0) no acumulador
+STA @10                     	#Zera o valor atual das unidades
+LDA @11                     	#Carrega o valor do endereço 11 da RAM no acumulador (valor atual das dezenas)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @155           	        #Se sim, vai para a proxima casa 
+STA @11                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 11 da RAM (valor atual das dezenas)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDA @62                     	#Carrega o valor 62 (0) no acumulador
+STA @11                     	#Zera o valor atual das dezenas
+LDA @12                     	#Carrega o valor do endereço 12 da RAM no acumulador (valor atual das centenas)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @164           	        #Se sim, vai para a proxima casa 
+STA @12                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 12 da RAM (valor atual das centenas)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDA @62                     	#Carrega o valor 62 (0) no acumulador
+STA @12                     	#Zera o valor atual das centenas
+LDA @13                     	#Carrega o valor do endereço 13 da RAM no acumulador (valor atual dos milhares)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @173          	        #Se sim, vai para a proxima casa 
+STA @13                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 13 da RAM (valor atual dos milhares)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDA @62                     	#Carrega o valor 62 (0) no acumulador
+STA @13                     	#Zera o valor atual dos milhares
+LDA @14                     	#Carrega o valor do endereço 14 da RAM no acumulador (valor atual das dezenas de milhares)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @182           	        #Se sim, vai para a proxima casa 
+STA @14                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 14 da RAM (valor atual das dezenas de milhares)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDA @62                     	#Carrega o valor 62 (0) no acumulador
+STA @14                     	#Zera o valor atual das dezenas de milhares
+LDA @15                     	#Carrega o valor do endereço 15 da RAM no acumulador (valor atual das centenas de milhares)
+SOMA @63                    	#Soma o valor do acumulador com 63 (1)
+CEQ @20                     	#Compara o valor do acumulador com o endereco 20 da RAM (10)
+JEQ @189           	        #Se sim, vai para a proxima casa 
+STA @15                     	#Se o valor do acumulador nao for 10, salva o valor do acumulador no endereço 15 da RAM (valor atual das centenas de milhares)
+JMP @198           	        #Coloca no display e retorna
+NOP
+LDI $9
+STA @288
+STA @289
+STA @290
+STA @291
+STA @292
+STA @293
+RET
+NOP
+LDA @10                     	#Carrega o valor do endereço 10 da RAM no acumulador (valor atual das unidades)
+STA @288                    	#Salva o valor do acumulador no HEX 0
+LDA @11                     	#Carrega o valor do endereço 11 da RAM no acumulador (valor atual das dezenas)
+STA @289                    	#Salva o valor do acumulador no HEX 1
+LDA @12                     	#Carrega o valor do endereço 12 da RAM no acumulador (valor atual das centenas)
+STA @290                    	#Salva o valor do acumulador no HEX 2
+LDA @13                     	#Carrega o valor do endereço 13 da RAM no acumulador (valor atual dos milhares)
+STA @291                    	#Salva o valor do acumulador no HEX 3
+LDA @14                     	#Carrega o valor do endereço 14 da RAM no acumulador (valor atual das dezenas de milhares)
+STA @292                    	#Salva o valor do acumulador no HEX 4
+LDA @15                     	#Carrega o valor do endereço 15 da RAM no acumulador (valor atual das centenas de milhares)
+STA @293                    	#Salva o valor do acumulador no HEX 5
+RET         
+NOP                             #SUBROTINA VERIFICACAO DE LIMITE
+LDA @0                          #Limite UNIDADE
+CEQ @10                         #Unidade = limite                          
+JEQ @217                       #Proxima casa
+RET
+LDA @1                          #Limite 10
+CEQ @11                         #10 = limite                          
+JEQ @221                       #Proxima casa
+RET
+LDA @2                          #Limite 100
+CEQ @12                         #100 = limite                          
+JEQ @225                       #Proxima casa
+RET
+LDA @3                          #Limite 1000
+CEQ @13                         #1000 = limite                          
+JEQ @229                       #Proxima casa
+RET
+LDA @4                          #Limite 10000
+CEQ @14                         #10000 = limite                          
+JEQ @233                       #Proxima casa
+RET
+LDA @5                          #Limite 100000
+CEQ @15                         #100000 = limite                          
+JEQ @237                       #Proxima casa
+RET
+LDI $1
+STA @258
+RET
+NOP #SUBROTINA FPGA RESET
+JMP @0

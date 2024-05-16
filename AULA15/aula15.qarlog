@@ -1,0 +1,27 @@
+Quartus Prime Archive log --	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/aula15.qarlog
+
+Archive:	C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/aula15.qar
+Date:		Thu May 02 22:54:47 2024
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/RAMMIPS.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/ROMMIPS.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/ULASomaSub.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/UnidadeControleULA.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/aula15.qpf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/aula15.qsf
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/banco_reg.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/banco_registradores.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/decoderInstru.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/estendeSinalGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/muxGenerico2x1.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/registradorGenerico.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/somaConstante.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/somador.vhd
+C:/Users/Alberto/INSPER/6 SEM/DESCOMP/AULA15/top_level.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 16 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
